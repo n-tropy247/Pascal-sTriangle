@@ -66,7 +66,8 @@ public class Pascal extends JFrame {
 
     /**
      * Creates JFrame
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String args[]) {
         EventQueue.invokeLater(() -> {
@@ -95,11 +96,11 @@ public class Pascal extends JFrame {
         int screenWidth = (int) screenSize.getWidth(); //width of screen
         int screenHeight = (int) screenSize.getHeight(); //height of screen
 
-        setSize(screenWidth - 50, screenHeight - 50); //sets size
+        setSize(screenWidth - 50, screenHeight - 350); //sets size
 
         setLocationRelativeTo(null);
 
-        jtaDisplay = new JTextArea(20, 30); //size of display
+        jtaDisplay = new JTextArea(27, 35); //size of display
         jtaDisplay.setEditable(false); //display not editable
         jtaDisplay.setLineWrap(true); //lines wrap down
 
@@ -135,8 +136,9 @@ public class Pascal extends JFrame {
 
     /**
      * Ensures input is in range
+     *
      * @param input
-     * @return 
+     * @return
      */
     private static boolean validateInput(final String input) {
         try {
@@ -145,7 +147,6 @@ public class Pascal extends JFrame {
                 numberOfRows = inputValue;
                 return true;
             }
-
             jtaDisplay.setText(jtaDisplay.getText() + "\nValue must be an integer between 3 and 21. Please insert valid number: ");
             return false;
         } catch (final NumberFormatException e) {
@@ -178,6 +179,7 @@ public class Pascal extends JFrame {
 
     /**
      * Finds number of spaces needed
+     *
      * @param number
      * @param maxNumberLength
      * @return number of spaces
@@ -192,6 +194,7 @@ public class Pascal extends JFrame {
 
     /**
      * Next row of numbers
+     *
      * @param n
      * @param r
      * @return next row
@@ -202,6 +205,7 @@ public class Pascal extends JFrame {
 
     /**
      * Finds number
+     *
      * @param n
      * @return next number
      */
@@ -221,13 +225,11 @@ public class Pascal extends JFrame {
         @Override
         public void actionPerformed(ActionEvent ae) {
             boolean validNumber;
-            
+
             jtaDisplay.setText(jtaDisplay.getText() + "\n");
-            
-            do {
-                input = jtfInput.getText();
-                validNumber = validateInput(input);
-            } while (!validNumber);
+
+            input = jtfInput.getText();
+            validNumber = validateInput(input);
 
             try {
                 Integer inputValue = Integer.parseInt(input);
@@ -237,8 +239,8 @@ public class Pascal extends JFrame {
             } catch (final NumberFormatException e) {
                 jtaDisplay.setText(jtaDisplay.getText() + "\nError while parsing input. Please insert valid number: ");
             }
-
-            makeTriangle();
+            if(validNumber)
+                makeTriangle();
 
             jtaDisplay.setText(jtaDisplay.getText() + "\nPlease enter number of rows for Pascals Triangle: ");
 
